@@ -1,0 +1,15 @@
+/* 파일 마지막에 in이 붙으면 cmake가 이 파일을 확인할 것임을 나타냄 */
+/* major 버전: 이전 버전 코드와 호환이 안됨 */
+/* minor 버전: 새로운 기능 추가 */
+/* patch 버전: 버그 수정 */
+#pragma once
+
+#include <cstdint>
+#include <string_view>
+
+static constexpr std::string_view project_name = "@PROJECT_NAME@";
+static constexpr std::string_view project_version = "@PROJECT_VERSION@";
+
+static constexpr std::int32_t project_version_major{@PROJECT_VERSION_MAJOR@};
+static constexpr std::int32_t project_version_minor{@PROJECT_VERSION_MINOR@};
+static constexpr std::int32_t project_version_patch{@PROJECT_VERSION_PATCH@};
