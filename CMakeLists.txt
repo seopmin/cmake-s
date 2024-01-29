@@ -5,7 +5,7 @@
 # 4.) cmake --build .
 # 5.) ./Executable
 
-cmake_minimum_required(VERSION 3.22)   # 최소 버전 작성
+cmake_minimum_required(VERSION 3.16)   # 최소 버전 작성
 
 project(
   CppProjectTemplate  # 프로젝트 명
@@ -24,6 +24,12 @@ set(CMAKE_CXX_EXTENSIONS        OFF)
 set(LIBRARY_NAME Library)
 set(EXECUTABLE_NAME Executable)
 
+# cmake 위치 설정
+set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
+include(AddGitSubmoduleFile)  # AddGitSubmodule cmake 파일을 불러와 아래의 함수 이용
+
+add_git_submodule(external/json)  # json subdir 추가
+
 # 빌드 파일 커스터마이징 옵션 ('변수명' 'description' 'on/off')
 option(COMPILE_EXECUTABLE "Whether to compile the executable" ON)
 # 오른쪽과 같이 컴파일에서 변경 가능 -> cmake .. -DCOMPILE_EXECUTABLE=ON
@@ -31,6 +37,9 @@ option(COMPILE_EXECUTABLE "Whether to compile the executable" ON)
 # 서브 디렉토리 추가
 add_subdirectory(src)  # 라이브러리 디렉토리를 실행 디렉토리보다 먼저!!(순서 바꾸어도 되긴 함)
 add_subdirectory(configured)
+# add_subdirectory(external)
+
+
 if (COMPILE_EXECUTABLE)
   add_subdirectory(app)
 else()
