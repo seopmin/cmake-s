@@ -1,0 +1,7 @@
+# "git submodule add https://github.com/nlohmann/json external/json" 를 통해 clone한 것들 저장됨.
+
+# submodle은 현재 깃 프로젝트에 저장하는 것
+
+[submodule "external/json"]
+	path = external/json
+	url = https://github.com/nlohmann/json
