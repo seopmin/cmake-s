@@ -7,5 +7,4 @@ add_executable(${EXECUTABLE_NAME} ${EXE_SOURCES})
 
 # 실행파일 라이브러리 링킹 ('실행파일이름' '옵션' '라이브러리이름')
 target_link_libraries(${EXECUTABLE_NAME} PUBLIC 
-    ${LIBRARY_NAME}
-    nlohmann_json)
+    ${LIBRARY_NAME})

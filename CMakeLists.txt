@@ -27,8 +27,52 @@ set(EXECUTABLE_NAME Executable)
 # cmake 위치 설정
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
 include(AddGitSubmoduleFile)  # AddGitSubmodule cmake 파일을 불러와 아래의 함수 이용
+# 정적으로 외부 라이브러리 가져오기.
+# add_git_submodule(external/json)  # json subdir 추가
 
-add_git_submodule(external/json)  # json subdir 추가
+# FetchContent를 사용하려면 해당 깃이 cmake 플젝이어야 함.
+include(FetchContent)
+FetchContent_Declare(
+  nlohman_json  # 해당 프로젝트 이름(cmake에 작성되어 있는)
+  GIT_REPOSITORY https://github.com/nlohmann/json  # git adress
+  GIT_TAG v3.11.3  # git vesion
+  GIT_SHALLOW TRUE
+)
+FetchContent_MakeAvailable(nlohman_json)  # cmake에 라이브러리 추가
+
+FetchContent_Declare(
+  fmt  # 해당 프로젝트 이름(cmake에 작성되어 있는)
+  GIT_REPOSITORY https://github.com/fmtlib/fmt  # git adress
+  GIT_TAG 10.2.1  # git vesion (v가 없는 것도 있음)
+  GIT_SHALLOW TRUE
+)
+FetchContent_MakeAvailable(fmt)  # cmake에 라이브러리 추가
+
+FetchContent_Declare(
+  spdlog  # 해당 프로젝트 이름(cmake에 작성되어 있는)
+  GIT_REPOSITORY https://github.com/gabime/spdlog  # git adress
+  GIT_TAG v1.13.0  # git vesion
+  GIT_SHALLOW TRUE
+)
+FetchContent_MakeAvailable(spdlog)  # cmake에 라이브러리 추가
+
+FetchContent_Declare(
+  cxxopts  # 해당 프로젝트 이름(cmake에 작성되어 있는)
+  GIT_REPOSITORY https://github.com/jarro2783/cxxopts  # git adress
+  GIT_TAG v3.1.1  # git vesion
+  GIT_SHALLOW TRUE
+)
+FetchContent_MakeAvailable(cxxopts)  # cmake에 라이브러리 추가
+
+FetchContent_Declare(
+  Catch2  # 해당 프로젝트 이름(cmake에 작성되어 있는)
+  GIT_REPOSITORY https://github.com/catchorg/Catch2  # git adress
+  GIT_TAG v2.13.9  # git vesion
+  GIT_SHALLOW TRUE
+)
+FetchContent_MakeAvailable(Catch2)  # cmake에 라이브러리 추가
+
+
 
 # 빌드 파일 커스터마이징 옵션 ('변수명' 'description' 'on/off')
 option(COMPILE_EXECUTABLE "Whether to compile the executable" ON)
