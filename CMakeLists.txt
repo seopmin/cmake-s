@@ -26,7 +26,7 @@ set(EXECUTABLE_NAME Executable)
 
 # cmake 위치 설정
 set(CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
-include(AddGitSubmoduleFile)  # AddGitSubmodule cmake 파일을 불러와 아래의 함수 이용
+include(AddGitSubmoduleFile)  # AddGitSubmodule 
 # 정적으로 외부 라이브러리 가져오기.
 # add_git_submodule(external/json)  # json subdir 추가
 
